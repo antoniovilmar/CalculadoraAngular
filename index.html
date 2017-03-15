@@ -10,34 +10,40 @@
         angular.module("Calculadora").controller("CalculadoraController", function($scope) {
             $scope.mensagem = "Calculadora";
             $scope.valor = 0;
-            $scope.valorTotal = 0;
+
+            var valorTotal = 0;
 
             function isValid(valor) {
                 return valor && angular.isDefined(valor);
-        }
+            }
 
-        $scope.incrementar = function() {
-            return $scope.valorTotal += 1;
-        }
+            $scope.incrementar = function() {
+                valorTotal += 1;
+            }
 
-        $scope.somar = function() {
-            if (isValid($scope.valor))
-                $scope.valorTotal += $scope.valor;
-        }
+            $scope.somar = function(valorParaSomar) {
+                debugger;
+                if (isValid(valorParaSomar))
+                    valorTotal += valorParaSomar;
+            }
 
-        $scope.diminuir = function() {
-            if (isValid($scope.valor))
-                $scope.valorTotal -= $scope.valor;
-        }
+            $scope.diminuir = function(valorParaDiminuir) {
+                if (isValid(valorParaDiminuir))
+                    valorTotal -= valorParaDiminuir;
+            }
 
-        $scope.multiplicar = function() {
-            if (isValid($scope.valor))
-                $scope.valorTotal *= $scope.valor;
-        }
-        $scope.dividir = function() {
-            if (isValid($scope.valor))
-                $scope.valorTotal /= $scope.valor;
-        }
+            $scope.multiplicar = function(valorParaMultiplicar) {
+                if (isValid(valorParaMultiplicar))
+                    valorTotal *= valorParaMultiplicar;
+            }
+            $scope.dividir = function(valorParaDividir) {
+                if (isValid(valorParaDividir))
+                    valorTotal /= valorParaDividir;
+            }
+
+            $scope.getValorTotal = function() {
+                return valorTotal;
+            }
 
         });
     </script>
@@ -47,14 +53,16 @@
     <h3>
         {{mensagem}}
     </h3>
-    <div>
-        <input type="number" required="true" ng-model='valor' /> Valor Total: {{valorTotal}}
-    </div>
-    <button ng-click="incrementar()">Incrementar</button>
-    <button ng-click="somar()">Somar</button>
-    <button ng-click="diminuir()">Diminuir</button>
-    <button ng-click="multiplicar()">Multiplicar</button>
-    <button ng-click="dividir()">Dividir</button>
+    <form name="form">
+        <div>
+            <input type="number" name="valor" id="valor" required="true" ng-model='valor' /> Valor Total: {{getValorTotal()}}
+        </div>
+        <button ng-click="incrementar()">Incrementar</button>
+        <button ng-click="somar(valor)">Somar</button>
+        <button ng-click="diminuir(valor)">Diminuir</button>
+        <button ng-click="multiplicar(valor)">Multiplicar</button>
+        <button ng-click="dividir(valor)">Dividir</button>
+    </form>
 </body>
 
 </html>
