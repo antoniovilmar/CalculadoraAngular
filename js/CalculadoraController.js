@@ -1,34 +1,31 @@
-app.controller("CalculadoraController", function($scope) {
+app.controller("CalculadoraController", function($scope, OperacaoService) {
     $scope.mensagem = "Calculadora";
     $scope.valor = 0;
 
     var valorTotal = 0;
-
-    function isValid(valor) {
-        return valor && angular.isDefined(valor);
-    }
 
     $scope.incrementar = function() {
         valorTotal += 1;
     }
 
     $scope.somar = function(valorParaSomar) {
-        if (isValid(valorParaSomar))
-            valorTotal += valorParaSomar;
+        if (OperacaoService.isValid(valorParaSomar)) {
+            valorTotal = OperacaoService.somar(valorTotal, valorParaSomar);
+        }
     }
 
     $scope.diminuir = function(valorParaDiminuir) {
-        if (isValid(valorParaDiminuir))
+        if (OperacaoService.isValid(valorParaDiminuir))
             valorTotal -= valorParaDiminuir;
     }
 
     $scope.multiplicar = function(valorParaMultiplicar) {
-        if (isValid(valorParaMultiplicar))
+        if (OperacaoService.isValid(valorParaMultiplicar))
             valorTotal *= valorParaMultiplicar;
     }
     $scope.dividir = function(valorParaDividir) {
-        if (isValid(valorParaDividir))
-            valorTotal /= valorParaDividir;
+        if (OperacaoService.isValid(valorParaDividir))
+            valorTotal = OperacaoService.dividir(valorTotal, valorParaDividir);
     }
 
     $scope.getValorTotal = function() {

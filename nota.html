@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="Calculadora">
+
+<head>
+    <meta charset="utf-8">
+    <title>Hello World - Calculadora</title>
+    <script src="js/angular.js"></script>
+    <script src="App.js"></script>
+    <script src="js/OperacaoService.js"></script>
+    <script src="js/NotaController.js"></script>
+</head>
+
+<body ng-controller="NotaController">
+    <h3>
+        {{mensagem}}
+    </h3>
+    <form name="form">
+        <div>
+            <input type="number" name="valor" id="valor" required="true" ng-model='valor' /> Valor Total: {{getValorTotal()}} / {{getQuantidadeNotas()}} / Media: {{getMedia()}}
+        </div>
+        <button ng-click="agregarNota(valor)">Agregar Nota</button>
+        <button ng-click="calcularMedia(getValorTotal())">Calcular Média</button>
+    </form>
+</body>
+
+</html>
