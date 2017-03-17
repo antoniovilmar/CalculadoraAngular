@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="HelloWorld">
+
+<head>
+    <meta charset="utf-8">
+    <title>Hello World - Calculadora</title>
+    <script src="js/angular.js"></script>
+    <script>
+        angular.module("HelloWorld", []).controller("HelloWorldController", function($scope) {
+            $scope.valor = 0;
+            $scope.adicionarValor = function(valor) {
+                $scope.valor = valor;
+            }
+        });
+    </script>
+</head>
+
+<body ng-controller="HelloWorldController">
+    <h3>
+        {{mensagem}}
+    </h3>
+    <form name="form">
+        <div>
+            Two Way <input type="text" ng-model='valor' />
+        </div>
+        <div>
+            Two Way <input type="text" ng-model='valor' />
+        </div>
+        <div>
+            Interpolação <input type="text" value="{{valor}}" /> <br>
+        </div>
+        <div>
+            Bind <span ng-bind="valor"></span>
+        </div>
+        <button ng-click="adicionarValor(10)">Adicionar 10</button> Valor: {{valor}}
+    </form>
+</body>
+
+</html>
